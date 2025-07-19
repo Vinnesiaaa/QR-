@@ -9,9 +9,52 @@
     <meta name="robots" content="index, follow">
     <meta name="title" content="QR CODE VIN NESIA - Custom QR Code Generator">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
     <title>QR CODE VIN NESIA - Custom QR Code Generator</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo-container">
+                <img src="logo.png" alt="QR CODE VIN NESIA Logo" class="logo" onerror="this.src='https://via.placeholder.com/32';">
+                <div class="site-title">QR CODE VIN NESIA</div>
+            </div>
+            <button id="menuToggle" class="menu-toggle">Menu</button>
+            <ul id="navMenu" class="nav-menu">
+                <li><a href="https://www.vinnesia.my.id/">Home</a></li>
+                <li><a href="https://qr.vinnesia.my.id/">QR Generator</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="qr-generator">
+            <h1 class="title">Generate Custom QR Code</h1>
+            <input type="text" id="qrInput" placeholder="Enter text or URL" class="input">
+            <div class="custom-options">
+                <label class="label">Foreground Color (Hex):</label>
+                <input type="color" id="fgColor" value="#000000" class="color-input">
+                <label class="label">Background Color (Hex):</label>
+                <input type="color" id="bgColor" value="#ffffff" class="color-input">
+                <label class="label">Size (100-1000px):</label>
+                <input type="number" id="qrSize" min="100" max="1000" value="200" class="input">
+            </div>
+            <button onclick="generateQR()" class="generate-btn">Generate</button>
+            <div id="qrCode" class="qr-code"></div>
+            <button onclick="downloadQR()" id="downloadBtn" class="download-btn hidden">Download PNG</button>
+            <p id="errorMsg" class="error-msg hidden"></p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="contact">Contact: <a href="mailto:Vin.nesia.id@gmail.com">Vin.nesia.id@gmail.com</a></p>
+            <p class="copyright">© 2025 Vin Nesia</p>
+        </div>
+    </footer>
+
     <script src="qrcode.min.js"></script>
+    <script src="scripts.js"></script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8V8Y4XQN4"></script>
     <script>
@@ -19,112 +62,6 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-F8V8Y4XQN4');
-    </script>
-</head>
-<body class="bg-gray-100 font-sans">
-    <header class="bg-blue-900 text-white py-3 shadow-md">
-        <nav class="container mx-auto flex flex-col items-center px-2">
-            <div class="flex items-center mb-2">
-                <img src="logo.png" alt="QR CODE VIN NESIA Logo" class="h-8 mr-2" onerror="this.src='https://via.placeholder.com/32';">
-                <div class="text-lg font-bold">QR CODE VIN NESIA</div>
-            </div>
-            <button id="menuToggle" class="bg-gray-700 text-white px-4 py-2 rounded-md mb-2 md:hidden">Menu</button>
-            <ul id="navMenu" class="flex-col hidden md:flex md:flex-row space-y-2 md:space-y-0 md:space-x-4 text-sm">
-                <li><a href="https://www.vinnesia.my.id/" class="hover:underline">Home</a></li>
-                <li><a href="https://qr.vinnesia.my.id/" class="hover:underline">QR Generator</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="container mx-auto py-6 px-2">
-        <section class="qr-generator bg-white p-6 rounded-lg shadow-md max-w-md mx-auto text-center">
-            <h1 class="text-2xl font-bold mb-4">Generate Custom QR Code</h1>
-            <input type="text" id="qrInput" placeholder="Enter text or URL" class="w-full p-3 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <div class="mb-4">
-                <label class="block text-left mb-2">Foreground Color (Hex):</label>
-                <input type="color" id="fgColor" value="#000000" class="w-full p-1 border rounded-md mb-2">
-                <label class="block text-left mb-2">Background Color (Hex):</label>
-                <input type="color" id="bgColor" value="#ffffff" class="w-full p-1 border rounded-md mb-2">
-                <label class="block text-left mb-2">Size (100-1000px):</label>
-                <input type="number" id="qrSize" min="100" max="1000" value="200" class="w-full p-3 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <button onclick="generateQR()" class="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition mb-4">Generate</button>
-            <div id="qrCode" class="mb-4"></div>
-            <button onclick="downloadQR()" id="downloadBtn" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition hidden">Download PNG</button>
-            <p id="errorMsg" class="text-red-500 hidden mt-2"></p>
-        </section>
-    </main>
-
-    <footer class="bg-gray-800 text-white py-2">
-        <div class="container mx-auto text-center px-2">
-            <p class="text-sm">Contact: <a href="mailto:Vin.nesia.id@gmail.com" class="underline">Vin.nesia.id@gmail.com</a></p>
-            <p class="text-sm mt-1">© 2025 Vin Nesia</p>
-        </div>
-    </footer>
-
-    <script>
-        let qrCodeInstance = null;
-
-        function generateQR() {
-            const input = document.getElementById('qrInput').value;
-            const qrCodeDiv = document.getElementById('qrCode');
-            const downloadBtn = document.getElementById('downloadBtn');
-            const errorMsg = document.getElementById('errorMsg');
-            const fgColor = document.getElementById('fgColor').value;
-            const bgColor = document.getElementById('bgColor').value;
-            const qrSize = parseInt(document.getElementById('qrSize').value);
-
-            // Reset error and UI
-            errorMsg.classList.add('hidden');
-            qrCodeDiv.innerHTML = '';
-            downloadBtn.classList.add('hidden');
-
-            if (!input) {
-                errorMsg.textContent = 'Please enter text or URL!';
-                errorMsg.classList.remove('hidden');
-                return;
-            }
-
-            if (qrSize < 100 || qrSize > 1000) {
-                errorMsg.textContent = 'Size must be between 100 and 1000 pixels!';
-                errorMsg.classList.remove('hidden');
-                return;
-            }
-
-            try {
-                if (qrCodeInstance) qrCodeInstance.clear(); // Clear previous QR if exists
-                qrCodeInstance = new QRCode(qrCodeDiv, {
-                    text: input,
-                    width: qrSize,
-                    height: qrSize,
-                    colorDark: fgColor,
-                    colorLight: bgColor,
-                    correctLevel: QRCode.CorrectLevel.H
-                });
-                downloadBtn.classList.remove('hidden');
-            } catch (e) {
-                errorMsg.textContent = 'Error generating QR code: ' + e.message;
-                errorMsg.classList.remove('hidden');
-            }
-        }
-
-        function downloadQR() {
-            const qrCodeDiv = document.getElementById('qrCode');
-            const canvas = qrCodeDiv.getElementsByTagName('canvas')[0];
-            if (canvas) {
-                const link = document.createElement('a');
-                link.download = 'qrcode.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            } else {
-                alert('No QR code to download. Generate one first!');
-            }
-        }
-
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('hidden');
-        });
     </script>
 </body>
 </html>
