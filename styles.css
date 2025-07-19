@@ -1,22 +1,22 @@
 /* styles.css */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9fafb;
-    color: #1f2937;
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f4f6;
+    color: #374151;
     margin: 0;
     padding: 0;
     line-height: 1.6;
 }
 
 header {
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,18 +29,18 @@ nav .flex {
 
 img.logo {
     height: 2.5rem;
-    margin-right: 0.75rem;
+    margin-right: 0.5rem;
 }
 
 .site-title {
     font-size: 1.25rem;
-    font-weight: bold;
-    color: #1e40af;
+    font-weight: 700;
+    color: #1f2937;
 }
 
 #menuToggle {
     display: none;
-    color: #4b5563;
+    color: #6b7280;
     background: none;
     border: none;
     cursor: pointer;
@@ -48,6 +48,11 @@ img.logo {
 
 #menuToggle:hover {
     color: #111827;
+}
+
+#menuToggle svg {
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 #navMenu {
@@ -58,10 +63,11 @@ img.logo {
 }
 
 #navMenu li a {
-    color: #4b5563;
+    color: #6b7280;
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 500;
+    transition: color 0.3s;
 }
 
 #navMenu li a:hover {
@@ -73,10 +79,10 @@ main {
 }
 
 section {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 2rem;
     text-align: center;
     max-width: 64rem;
     margin: 0 auto;
@@ -85,7 +91,7 @@ section {
 h1 {
     font-size: 1.875rem;
     font-weight: 700;
-    color: #111827;
+    color: #1f2937;
     margin-bottom: 1.5rem;
 }
 
@@ -96,11 +102,12 @@ input {
     border-radius: 0.5rem;
     margin-bottom: 1rem;
     outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
 .grid {
@@ -118,7 +125,7 @@ label {
     text-align: left;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #374151;
+    color: #4b5563;
     margin-bottom: 0.25rem;
 }
 
@@ -130,12 +137,12 @@ button {
 }
 
 .generate-btn {
-    background-color: #1e40af;
+    background-color: #4c51bf;
     color: white;
 }
 
 .generate-btn:hover {
-    background-color: #1e3a8a;
+    background-color: #434190;
 }
 
 #qrCode {
@@ -143,12 +150,22 @@ button {
 }
 
 .download-btn {
-    background-color: #16a34a;
+    background-color: #10b981;
     color: white;
+    margin-right: 0.5rem;
 }
 
 .download-btn:hover {
-    background-color: #15803d;
+    background-color: #059669;
+}
+
+#downloadCodeBtn {
+    background-color: #3b82f6;
+    color: white;
+}
+
+#downloadCodeBtn:hover {
+    background-color: #2563eb;
 }
 
 .error-msg {
@@ -162,8 +179,8 @@ button {
 }
 
 footer {
-    background-color: #111827;
-    color: white;
+    background-color: #1f2937;
+    color: #d1d5db;
     padding: 1.5rem;
     text-align: center;
 }
@@ -174,12 +191,12 @@ footer {
 }
 
 .contact a {
-    color: white;
+    color: #d1d5db;
     text-decoration: underline;
 }
 
 .contact a:hover {
-    color: #d1d5db;
+    color: #e5e7eb;
 }
 
 @media (max-width: 1024px) {
@@ -191,8 +208,8 @@ footer {
         position: absolute;
         top: 4rem;
         right: 1rem;
-        background-color: white;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 1rem;
         border-radius: 0.5rem;
         z-index: 10;
@@ -204,5 +221,8 @@ footer {
     }
     .grid {
         grid-template-columns: 1fr;
+    }
+    section {
+        padding: 1rem;
     }
 }
