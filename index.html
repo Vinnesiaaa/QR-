@@ -3,53 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Create custom QR codes with QR CODE VIN NESIA. Customize colors and size, download instantly.">
-    <meta name="keywords" content="qr code generator, vin nesia, custom qr code, qr code colors, qr code size">
+    <meta name="description" content="Create stunning custom QR codes with QR CODE VIN NESIA. Customize colors, size, and download instantly.">
+    <meta name="keywords" content="qr code generator, vin nesia, custom qr code, qr code design">
     <meta name="author" content="Vin Nesia">
     <meta name="robots" content="index, follow">
-    <meta name="title" content="QR CODE VIN NESIA - Custom QR Code Generator">
+    <meta name="title" content="QR CODE VIN NESIA - Professional QR Code Generator">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <title>QR CODE VIN NESIA - Custom QR Code Generator</title>
+    <title>QR CODE VIN NESIA - QR Code Generator</title>
 </head>
-<body>
-    <header class="header">
-        <nav class="nav">
-            <div class="logo-container">
-                <img src="logo.png" alt="QR CODE VIN NESIA Logo" class="logo" onerror="this.src='https://via.placeholder.com/32';">
-                <div class="site-title">QR CODE VIN NESIA</div>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <header class="bg-white shadow-md">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="logo.png" alt="QR CODE VIN NESIA Logo" class="h-10 mr-3" onerror="this.src='https://via.placeholder.com/40';">
+                <span class="text-xl font-bold text-blue-900">QR CODE VIN NESIA</span>
             </div>
-            <button id="menuToggle" class="menu-toggle">Menu</button>
-            <ul id="navMenu" class="nav-menu">
-                <li><a href="https://www.vinnesia.my.id/">Home</a></li>
-                <li><a href="https://qr.vinnesia.my.id/">QR Generator</a></li>
-            </ul>
+            <div class="flex items-center space-x-6">
+                <button id="menuToggle" class="lg:hidden text-gray-600 hover:text-gray-900 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <ul id="navMenu" class="hidden lg:flex space-x-6 text-sm font-medium">
+                    <li><a href="https://www.vinnesia.my.id/" class="text-blue-900 hover:text-blue-700">Home</a></li>
+                    <li><a href="about.html" class="text-gray-600 hover:text-gray-900">About</a></li>
+                    <li><a href="terms.html" class="text-gray-600 hover:text-gray-900">Terms</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
-    <main class="main">
-        <section class="qr-generator">
-            <h1 class="title">Generate Custom QR Code</h1>
-            <input type="text" id="qrInput" placeholder="Enter text or URL" class="input">
-            <div class="custom-options">
-                <label class="label">Foreground Color (Hex):</label>
-                <input type="color" id="fgColor" value="#000000" class="color-input">
-                <label class="label">Background Color (Hex):</label>
-                <input type="color" id="bgColor" value="#ffffff" class="color-input">
-                <label class="label">Size (100-1000px):</label>
-                <input type="number" id="qrSize" min="100" max="1000" value="200" class="input">
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <section class="bg-white rounded-xl shadow-lg p-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">Create Your Custom QR Code</h1>
+            <input type="text" id="qrInput" placeholder="Enter text or URL" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div>
+                    <label class="block text-left text-sm font-medium text-gray-700 mb-1">Foreground Color</label>
+                    <input type="color" id="fgColor" value="#000000" class="w-full p-1 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-left text-sm font-medium text-gray-700 mb-1">Background Color</label>
+                    <input type="color" id="bgColor" value="#ffffff" class="w-full p-1 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="block text-left text-sm font-medium text-gray-700 mb-1">Size (100-1000px)</label>
+                    <input type="number" id="qrSize" min="100" max="1000" value="200" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
             </div>
-            <button onclick="generateQR()" class="generate-btn">Generate</button>
-            <div id="qrCode" class="qr-code"></div>
-            <button onclick="downloadQR()" id="downloadBtn" class="download-btn hidden">Download PNG</button>
-            <p id="errorMsg" class="error-msg hidden"></p>
+            <button onclick="generateQR()" class="bg-blue-900 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition duration-300 mb-6">Generate QR Code</button>
+            <div id="qrCode" class="mx-auto mb-6"></div>
+            <button onclick="downloadQR()" id="downloadBtn" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300 hidden">Download PNG</button>
+            <p id="errorMsg" class="text-red-600 text-sm mt-2 hidden"></p>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="contact">Contact: <a href="mailto:Vin.nesia.id@gmail.com">Vin.nesia.id@gmail.com</a></p>
-            <p class="copyright">© 2025 Vin Nesia</p>
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">Contact: <a href="mailto:Vin.nesia.id@gmail.com" class="underline hover:text-gray-300">Vin.nesia.id@gmail.com</a></p>
+            <p class="text-sm mt-1">© 2025 Vin Nesia. All rights reserved.</p>
         </div>
     </footer>
 
