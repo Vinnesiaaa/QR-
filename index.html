@@ -7,8 +7,26 @@
   <meta name="description" content="Create stunning QR codes with VIN NESIA.">
   <title>QR CODE VIN NESIA</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- SEO meta tags -->
+  <meta name="title" content="QR CODE Generator by Vin Nesia - Stylish, Fast & Free">
+  <meta name="description" content="Generate high-quality QR codes with an elegant design. Stylish, fast, and free by Vin Nesia.">
+  <meta name="keywords" content="QR Code, Generator, Stylish QR, Free QR Code, Vin Nesia">
+  <meta name="author" content="Vin Nesia">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://qr.vinnesia.my.id/index.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+  <!-- Analytics (placeholder) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8V8Y4XQN4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F8V8Y4XQN4');
+  </script>
 </head>
+
 <body class="bg-gradient-to-br from-black via-purple-900 to-yellow-900 min-h-screen font-sans text-white">
 
   <header class="bg-white/10 backdrop-blur shadow-md p-4">
@@ -45,7 +63,9 @@
         Generate
       </button>
       <div id="qrCode" class="mt-6 flex justify-center"></div>
-      <button onclick="downloadQR()" id="downloadBtn"
+      <button onclick="downloadQR()" id="downloadBtn" class="hidden mt-4 bg-purple-500 hover:bg-purple-400 px-5 py-2 text-white font-semibold rounded shadow mr-2">Download PNG</button>
+  <button onclick="shareQR()" id="shareBtn" 
+  class="hidden mt-4 bg-yellow-500 hover:bg-yellow-400 px-5 py-2 text-black font-semibold rounded shadow">Share QR</button>
         class="hidden mt-4 bg-purple-500 hover:bg-purple-400 px-5 py-2 text-white font-semibold rounded shadow">
         Download PNG
       </button>
@@ -113,6 +133,24 @@
         li.textContent = item;
         list.appendChild(li);
       });
+    }
+
+    
+    function shareQR() {
+      const qrCodeDiv = document.getElementById('qrCode');
+      const canvas = qrCodeDiv.getElementsByTagName('canvas')[0];
+      if (canvas && navigator.share) {
+        canvas.toBlob(blob => {
+          const file = new File([blob], 'qrcode.png', { type: 'image/png' });
+          navigator.share({
+            title: 'QR Code by Vin Nesia',
+            text: 'Scan this QR Code!',
+            files: [file]
+          }).catch(err => console.log('Share failed:', err));
+        });
+      } else {
+        alert('Sharing not supported on this device/browser.');
+      }
     }
 
     // Initial render
