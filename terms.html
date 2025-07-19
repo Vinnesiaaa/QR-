@@ -10,7 +10,6 @@
     <meta name="title" content="QR CODE VIN NESIA - Terms and Conditions">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
     <title>QR CODE VIN NESIA - Terms and Conditions</title>
 </head>
 <body class="bg-gray-100 font-sans text-gray-800">
@@ -55,14 +54,11 @@
         </div>
     </footer>
 
-    <script src="scripts.js"></script>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8V8Y4XQN4"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-F8V8Y4XQN4');
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
