@@ -34,4 +34,4 @@ Disallow:
 User-agent: *
 Disallow: 
 Disallow: /cgi-bin/
-Sitemap: https://qr.vinnesia.my.id
+Sitemap: https://qr.vinnesia.my.id/sitemap.xml
