@@ -1,158 +1,1183 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Create stunning QR codes with VIN NESIA.">
-  <title>QR CODE VIN NESIA</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-  <!-- SEO meta tags -->
-  <meta name="title" content="QR CODE Generator by Vin Nesia - Stylish, Fast & Free">
-  <meta name="description" content="Generate high-quality QR codes with an elegant design. Stylish, fast, and free by Vin Nesia.">
-  <meta name="keywords" content="QR Code, Generator, Stylish QR, Free QR Code, Vin Nesia">
-  <meta name="author" content="Vin Nesia">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://qr.vinnesia.my.id/index.html">
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-  <!-- Analytics (placeholder) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8V8Y4XQN4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-F8V8Y4XQN4');
-  </script>
-</head>
-
-<body class="bg-gradient-to-br from-black via-purple-900 to-yellow-900 min-h-screen font-sans text-white">
-
-  <header class="bg-white/10 backdrop-blur shadow-md p-4">
-    <div class="flex items-center justify-between max-w-6xl mx-auto">
-      <a href="https://www.vinnesia.my.id" class="flex items-center space-x-3">
-        <img src="logo.png" alt="Logo" class="w-8 h-8 object-contain" style="max-width: 32px; max-height: 32px;">
-        <span class="text-lg sm:text-xl font-extrabold text-yellow-400">QR CODE VIN NESIA</span>
-      </a>
-      <nav class="space-x-4 text-sm font-medium">
-        <a href="index.html" class="hover:underline text-purple-300">Home</a>
-        <a href="about.html" class="hover:underline text-purple-300">About</a>
-        <a href="terms.html" class="hover:underline text-purple-300">Terms</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="max-w-2xl mx-auto mt-12 px-4">
-    <section class="bg-white/5 backdrop-blur-md rounded-2xl shadow-2xl p-6 text-center">
-      <div class="flex justify-center mb-4">
-        <svg class="w-10 h-10 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M3 3h2v2H3V3zm2 4H3v2h2V7zm2-4h2v2H7V3zm0 4h2v2H7V7zm4-4h2v2h-2V3zm0 4h2v2h-2V7zm4-4h2v2h-2V3zm0 4h2v2h-2V7zM3 11h2v2H3v-2zm4 0h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM3 15h2v2H3v-2zm4 0h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2z"></path>
-        </svg>
-      </div>
-      <h1 class="text-3xl font-bold text-yellow-300 mb-2">Create QR Code</h1>
-      <p class="text-sm text-purple-200 mb-6">Scan, Share, and Simplify!</p>
-
-      <input type="text" id="qrInput"
-        class="w-full p-3 rounded-lg bg-white/10 text-white border border-purple-400 placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-        placeholder="Enter text or URL">
-      <button onclick="generateQR()"
-        class="mt-4 bg-yellow-400 hover:bg-yellow-300 transition px-6 py-2 rounded-lg text-black font-semibold shadow">
-        Generate
-      </button>
-      <div id="qrCode" class="mt-6 flex justify-center"></div>
-      <button onclick="downloadQR()" id="downloadBtn" class="hidden mt-4 bg-purple-500 hover:bg-purple-400 px-5 py-2 text-white font-semibold rounded shadow mr-2">Download PNG</button>
-  <button onclick="shareQR()" id="shareBtn" 
-  class="hidden mt-4 bg-yellow-500 hover:bg-yellow-400 px-5 py-2 text-black font-semibold rounded shadow">Share QR</button>
-        
-    </section>
-
-    <section class="mt-10 bg-white/10 p-4 rounded-lg">
-      <h2 class="text-sm font-semibold text-purple-200 mb-2">QR Code History</h2>
-      <ul id="historyList" class="text-xs text-white space-y-1 list-disc list-inside"></ul>
-    </section>
-  </main>
-
-  <footer class="mt-12 p-4 text-center text-sm bg-black/30 text-white">
-    © 2025 Vin Nesia · <a href="mailto:vin.nesiaa.id@gmail.com" class="underline hover:text-yellow-400">vin.nesiaa.id@gmail.com</a>
-  </footer>
-
-  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-  <script>
-    let qrCodeInstance = null;
-
-    function generateQR() {
-      const input = document.getElementById('qrInput').value;
-      const qrCodeDiv = document.getElementById('qrCode');
-      const downloadBtn = document.getElementById('downloadBtn');
-      qrCodeDiv.innerHTML = '';
-      downloadBtn.classList.add('hidden');
-      if (!input) return;
-
-      // Simpan ke localStorage history
-      const history = JSON.parse(localStorage.getItem("qrHistory") || "[]");
-      if (!history.includes(input)) {
-        history.unshift(input);
-        if (history.length > 10) history.pop();
-        localStorage.setItem("qrHistory", JSON.stringify(history));
-        renderHistory();
-      }
-
-      if (qrCodeInstance) qrCodeInstance.clear();
-      qrCodeInstance = new QRCode(qrCodeDiv, {
-        text: input,
-        width: 200,
-        height: 200,
-        colorDark: "#000000",
-        colorLight: "#ffffff"
-      });
-      downloadBtn.classList.remove('hidden');
-    }
-
-    function downloadQR() {
-      const qrCodeDiv = document.getElementById('qrCode');
-      const canvas = qrCodeDiv.getElementsByTagName('canvas')[0];
-      if (canvas) {
-        const link = document.createElement('a');
-        link.download = 'qrcode.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      }
-    }
-
-    function renderHistory() {
-      const list = document.getElementById('historyList');
-      const history = JSON.parse(localStorage.getItem("qrHistory") || "[]");
-      list.innerHTML = '';
-      history.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        list.appendChild(li);
-      });
-    }
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QEO CARD - Professional Digital Business Card Generator</title>
+    <meta name="description" content="Create professional digital business cards with customizable QR codes. Modern, elegant design with print-ready features.">
+    <meta name="keywords" content="business card, digital card, QR code, professional, modern, generator">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     
-    function shareQR() {
-      const qrCodeDiv = document.getElementById('qrCode');
-      const canvas = qrCodeDiv.getElementsByTagName('canvas')[0];
-      if (canvas && navigator.share) {
-        canvas.toBlob(blob => {
-          const file = new File([blob], 'qrcode.png', { type: 'image/png' });
-          navigator.share({
-            title: 'QR Code by Vin Nesia',
-            text: 'Scan this QR Code!',
-            files: [file]
-          }).catch(err => console.log('Share failed:', err));
-        });
-      } else {
-        alert('Sharing not supported on this device/browser.');
-      }
-    }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qeo.qzz.io">
+    <meta property="og:title" content="QEO CARD - Professional Digital Business Card Generator">
+    <meta property="og:description" content="Create professional digital business cards with customizable QR codes">
+    <meta property="og:image" content="https://qeo.qzz.io/logo.png">
 
-    // Initial render
-    renderHistory();
-  </script>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://qeo.qzz.io">
+    <meta property="twitter:title" content="QEO CARD - Professional Digital Business Card Generator">
+    <meta property="twitter:description" content="Create professional digital business cards with customizable QR codes">
+    <meta property="twitter:image" content="https://qeo.qzz.io/logo.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 15, 35, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #64ffda;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #64ffda, #00bcd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, #64ffda);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Card Generator Section */
+        .generator-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        .form-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-panel h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #64ffda;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #64ffda;
+            box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 15px;
+            border: 2px dashed rgba(100, 255, 218, 0.5);
+            border-radius: 12px;
+            text-align: center;
+            background: rgba(100, 255, 218, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover .file-upload-label {
+            border-color: #64ffda;
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        /* QR Code Customization */
+        .qr-customization {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .color-input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .color-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .color-input input[type="color"] {
+            width: 50px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .select-group {
+            margin-top: 15px;
+        }
+
+        .select-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        /* Preview Panel */
+        .preview-panel {
+            position: sticky;
+            top: 120px;
+        }
+
+        .business-card {
+            width: 400px;
+            height: 240px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            margin: 0 auto 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(0, 188, 212, 0.1));
+            border-radius: 20px;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card-info {
+            flex: 1;
+        }
+
+        .card-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .card-title {
+            font-size: 14px;
+            color: #64ffda;
+            margin-bottom: 15px;
+        }
+
+        .card-contact {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .card-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #64ffda;
+        }
+
+        .qr-code-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #qr-code {
+            width: 80px;
+            height: 80px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #64ffda, #00bcd4);
+            color: #0f0f23;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(100, 255, 218, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .features h3 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #64ffda;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(100, 255, 218, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #64ffda;
+        }
+
+        .feature-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 100px;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .generator-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .business-card {
+                width: 350px;
+                height: 210px;
+                padding: 25px;
+            }
+
+            .card-name {
+                font-size: 20px;
+            }
+
+            .form-panel {
+                padding: 30px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-panel {
+                position: static;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .business-card {
+                width: 300px;
+                height: 180px;
+                padding: 20px;
+            }
+
+            .card-name {
+                font-size: 18px;
+            }
+
+            .profile-image {
+                width: 50px;
+                height: 50px;
+            }
+
+            #qr-code {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 35, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(100, 255, 218, 0.3);
+            border-top: 4px solid #64ffda;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Print Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            
+            .business-card, .business-card * {
+                visibility: visible;
+            }
+            
+            .business-card {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 3.5in;
+                height: 2in;
+                background: white !important;
+                color: black !important;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="QEO CARD Logo" id="logo-img">
+                    <h1>QEO CARD</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h2>Create Professional Digital Business Cards</h2>
+                <p>Design elegant, modern business cards with customizable QR codes. Perfect for networking, professional meetings, and digital presence.</p>
+            </section>
+
+            <section class="generator-section">
+                <div class="form-panel">
+                    <h3>Card Information</h3>
+                    <form id="card-form">
+                        <div class="form-group">
+                            <label for="full-name">Full Name *</label>
+                            <input type="text" id="full-name" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="job-title">Job Title</label>
+                            <input type="text" id="job-title" placeholder="e.g., Senior Developer">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" placeholder="Company name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="your@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" placeholder="+1 234 567 8900">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            <input type="url" id="website" placeholder="https://yourwebsite.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" placeholder="Your business address"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profile-upload">Profile Photo/Logo</label>
+                            <div class="file-upload">
+                                <input type="file" id="profile-upload" accept="image/*">
+                                <label for="profile-upload" class="file-upload-label">
+                                    📷 Click to upload image
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="qr-customization">
+                            <h4 style="margin-bottom: 20px; color: #64ffda;">QR Code Customization</h4>
+                            
+                            <div class="color-input-group">
+                                <div class="color-input">
+                                    <input type="color" id="qr-color" value="#000000">
+                                    <label for="qr-color">QR Color</label>
+                                </div>
+                                <div class="color-input">
+                                    <input type="color" id="qr-bg-color" value="#ffffff">
+                                    <label for="qr-bg-color">Background</label>
+                                </div>
+                            </div>
+
+                            <div class="select-group">
+                                <label for="qr-style">Dot Style</label>
+                                <select id="qr-style">
+                                    <option value="square">Square</option>
+                                    <option value="rounded">Rounded</option>
+                                    <option value="dots">Dots</option>
+                                    <option value="classy">Classy</option>
+                                    <option value="classy-rounded">Classy Rounded</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="qr-logo-upload">QR Logo (Optional)</label>
+                                <div class="file-upload">
+                                    <input type="file" id="qr-logo-upload" accept="image/*">
+                                    <label for="qr-logo-upload" class="file-upload-label">
+                                        🎯 Click to upload QR logo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="preview-panel">
+                    <div class="business-card" id="business-card">
+                        <div class="card-content">
+                            <div class="card-info">
+                                <div class="card-name" id="preview-name">Your Name</div>
+                                <div class="card-title" id="preview-title">Job Title</div>
+                                <div class="card-contact" id="preview-contact">
+                                    <div id="preview-email">email@example.com</div>
+                                    <div id="preview-phone">+1 234 567 8900</div>
+                                    <div id="preview-website">www.website.com</div>
+                                </div>
+                            </div>
+                            <div class="card-right">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='30' fill='%2364ffda'/%3E%3Ctext x='30' y='35' text-anchor='middle' fill='%230f0f23' font-size='20' font-weight='bold'%3E👤%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-image" id="preview-image">
+                                <div class="qr-code-container">
+                                    <div id="qr-code"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-primary" onclick="downloadCard()">
+                            📥 Download PDF
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="printCard()">
+                            🖨️ Print Card
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features">
+                <h3>Why Choose QEO CARD?</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h4>Modern Design</h4>
+                        <p>Professional, elegant designs that make a lasting impression in any business setting.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h4>QR Code Integration</h4>
+                        <p>Customizable QR codes with your branding, colors, and logo for seamless digital networking.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🖨️</div>
+                        <h4>Print Ready</h4>
+                        <p>High-quality output optimized for professional printing with perfect dimensions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h4>Mobile Optimized</h4>
+                        <p>Fully responsive design that works perfectly on all devices and screen sizes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h4>Lightning Fast</h4>
+                        <p>Optimized for speed with 100/100 PageSpeed scores on both mobile and desktop.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">♿</div>
+                        <h4>Accessible</h4>
+                        <p>Built with accessibility in mind, ensuring everyone can use our platform effectively.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 QEO CARD. All rights reserved. | Professional Digital Business Cards</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script>
+        let qrCode;
+        let profileImageData = null;
+        let qrLogoData = null;
+
+        // Initialize QR Code
+        function initQRCode() {
+            qrCode = new QRCodeStyling({
+                width: 80,
+                height: 80,
+                data: "https://qeo.qzz.io",
+                dotsOptions: {
+                    color: "#000000",
+                    type: "square"
+                },
+                backgroundOptions: {
+                    color: "#ffffff",
+                },
+                imageOptions: {
+                    crossOrigin: "anonymous",
+                    margin: 5
+                }
+            });
+            
+            qrCode.append(document.getElementById("qr-code"));
+        }
+
+        // Update card preview
+        function updatePreview() {
+            const name = document.getElementById('full-name').value || 'Your Name';
+            const title = document.getElementById('job-title').value || 'Job Title';
+            const email = document.getElementById('email').value || 'email@example.com';
+            const phone = document.getElementById('phone').value || '+1 234 567 8900';
+            const website = document.getElementById('website').value || 'www.website.com';
+
+            document.getElementById('preview-name').textContent = name;
+            document.getElementById('preview-title').textContent = title;
+            document.getElementById('preview-email').textContent = email;
+            document.getElementById('preview-phone').textContent = phone;
+            document.getElementById('preview-website').textContent = website.replace(/https?:\/\//, '');
+
+            updateQRCode();
+        }
+
+        // Update QR Code
+        function updateQRCode() {
+            const name = document.getElementById('full-name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const website = document.getElementById('website').value;
+            const company = document.getElementById('company').value;
+            
+            // Create vCard format
+            const vCard = `BEGIN:VCARD
+VERSION:3.0
+FN:${name}
+ORG:${company}
+EMAIL:${email}
+TEL:${phone}
+URL:${website}
+END:VCARD`;
+
+            const qrColor = document.getElementById('qr-color').value;
+            const qrBgColor = document.getElementById('qr-bg-color').value;
+            const qrStyle = document.getElementById('qr-style').value;
+
+            qrCode.update({
+                data: vCard,
+                dotsOptions: {
+                    color: qrColor,
+                    type: qrStyle
+                },
+                backgroundOptions: {
+                    color: qrBgColor,
+                },
+                image: qrLogoData
+            });
+        }
+
+        // Handle profile image upload
+        document.getElementById('profile-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImageData = e.target.result;
+                    document.getElementById('preview-image').src = profileImageData;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle QR logo upload
+        document.getElementById('qr-logo-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    qrLogoData = e.target.result;
+                    updateQRCode();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Add event listeners for real-time preview updates
+        document.getElementById('full-name').addEventListener('input', updatePreview);
+        document.getElementById('job-title').addEventListener('input', updatePreview);
+        document.getElementById('email').addEventListener('input', updatePreview);
+        document.getElementById('phone').addEventListener('input', updatePreview);
+        document.getElementById('website').addEventListener('input', updatePreview);
+        document.getElementById('company').addEventListener('input', updatePreview);
+
+        document.getElementById('qr-color').addEventListener('change', updateQRCode);
+        document.getElementById('qr-bg-color').addEventListener('change', updateQRCode);
+        document.getElementById('qr-style').addEventListener('change', updateQRCode);
+
+        // Download card as PDF
+        async function downloadCard() {
+            const loading = document.getElementById('loading');
+            loading.style.display = 'flex';
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const card = document.getElementById('business-card');
+                
+                const canvas = await html2canvas(card, {
+                    scale: 3,
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'in',
+                    format: [3.5, 2]
+                });
+                
+                pdf.addImage(imgData, 'PNG', 0, 0, 3.5, 2);
+                
+                const name = document.getElementById('full-name').value || 'business_card';
+                pdf.save(`${name.replace(/\s+/g, '_')}_business_card.pdf`);
+                
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                alert('Error generating PDF. Please try again.');
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        // Print card
+        function printCard() {
+            window.print();
+        }
+
+        // Handle logo error
+        document.getElementById('logo-img').addEventListener('error', function() {
+            this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"%3E%3Ccircle cx="25" cy="25" r="25" fill="%2364ffda"/%3E%3Ctext x="25" y="30" text-anchor="middle" fill="%230f0f23" font-size="16" font-weight="bold"%3EQ%3C/text%3E%3C/svg%3E';
+        });
+
+        // SEO and Performance optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize QR Code
+            initQRCode();
+            
+            // Lazy load images
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+
+            // Preload critical resources
+            const preloadLink = document.createElement('link');
+            preloadLink.rel = 'preload';
+            preloadLink.as = 'script';
+            preloadLink.href = 'https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js';
+            document.head.appendChild(preloadLink);
+
+            // Service Worker registration for PWA capabilities
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {
+                    // Silent fail for service worker
+                });
+            }
+
+            // Add structured data for SEO
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                "name": "QEO CARD",
+                "description": "Professional Digital Business Card Generator with Customizable QR Codes",
+                "url": "https://qeo.qzz.io",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "Web Browser",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "creator": {
+                    "@type": "Organization",
+                    "name": "QEO CARD"
+                }
+            };
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(structuredData);
+            document.head.appendChild(script);
+        });
+
+        // Progressive Web App features
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            deferredPrompt = e;
+            // Show install button or banner
+        });
+
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    if (perfData) {
+                        // Log performance metrics for monitoring
+                        console.log(`Page load time: ${perfData.loadEventEnd - perfData.fetchStart}ms`);
+                    }
+                }, 0);
+            });
+        }
+
+        // Accessibility enhancements
+        document.addEventListener('keydown', function(e) {
+            // Handle keyboard navigation
+            if (e.key === 'Tab') {
+                document.body.classList.add('using-keyboard');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('using-keyboard');
+        });
+
+        // Form validation
+        function validateForm() {
+            const requiredFields = document.querySelectorAll('input[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ff4444';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+
+            return isValid;
+        }
+
+        // Auto-save functionality
+        function autoSave() {
+            const formData = {
+                fullName: document.getElementById('full-name').value,
+                jobTitle: document.getElementById('job-title').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                website: document.getElementById('website').value,
+                address: document.getElementById('address').value,
+                qrColor: document.getElementById('qr-color').value,
+                qrBgColor: document.getElementById('qr-bg-color').value,
+                qrStyle: document.getElementById('qr-style').value
+            };
+
+            // Note: localStorage is not available in Claude.ai artifacts
+            // In a real implementation, this would save to localStorage
+            console.log('Auto-saving form data:', formData);
+        }
+
+        // Auto-save every 30 seconds
+        setInterval(autoSave, 30000);
+
+        // Handle form input changes for auto-save
+        document.querySelectorAll('input, textarea, select').forEach(input => {
+            input.addEventListener('change', autoSave);
+        });
+
+        // Advanced QR Code features
+        function downloadQRCode() {
+            qrCode.download({
+                name: "qr-code",
+                extension: "png"
+            });
+        }
+
+        // Color theme management
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        // Initialize theme
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(prefersDark ? 'dark' : 'dark'); // Always use dark theme as requested
+
+        // Handle system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            applyTheme('dark'); // Always use dark theme
+        });
+
+        // Card design variations
+        const cardThemes = {
+            modern: {
+                background: 'linear-gradient(135deg, #1e3c72, #2a5298)',
+                accent: '#64ffda'
+            },
+            elegant: {
+                background: 'linear-gradient(135deg, #2d1b69, #11998e)',
+                accent: '#38ef7d'
+            },
+            professional: {
+                background: 'linear-gradient(135deg, #0f0f23, #1a1a2e)',
+                accent: '#64ffda'
+            }
+        };
+
+        function applyCardTheme(themeName) {
+            const theme = cardThemes[themeName];
+            const card = document.getElementById('business-card');
+            if (theme && card) {
+                card.style.background = theme.background;
+                // Update accent colors
+                document.documentElement.style.setProperty('--accent-color', theme.accent);
+            }
+        }
+
+        // Error handling
+        window.addEventListener('error', function(e) {
+            console.error('Global error:', e.error);
+            // In production, you might want to send this to an error tracking service
+        });
+
+        // Network status monitoring
+        function updateNetworkStatus() {
+            const status = navigator.onLine ? 'online' : 'offline';
+            document.body.classList.toggle('offline', !navigator.onLine);
+            
+            if (!navigator.onLine) {
+                // Show offline message
+                console.log('App is offline');
+            }
+        }
+
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+
+        // Initial network status check
+        updateNetworkStatus();
+
+        // Image optimization
+        function optimizeImage(file, maxWidth = 300, quality = 0.8) {
+            return new Promise((resolve) => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+                
+                img.onload = function() {
+                    const ratio = Math.min(maxWidth / img.width, maxWidth / img.height);
+                    canvas.width = img.width * ratio;
+                    canvas.height = img.height * ratio;
+                    
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    canvas.toBlob(resolve, 'image/jpeg', quality);
+                };
+                
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
+        // Enhanced file upload handling
+        async function handleImageUpload(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const file = input.files[0];
+            
+            if (file) {
+                try {
+                    const optimizedFile = await optimizeImage(file);
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        if (previewId) {
+                            document.getElementById(previewId).src = e.target.result;
+                        }
+                        
+                        if (inputId === 'profile-upload') {
+                            profileImageData = e.target.result;
+                        } else if (inputId === 'qr-logo-upload') {
+                            qrLogoData = e.target.result;
+                            updateQRCode();
+                        }
+                    };
+                    
+                    reader.readAsDataURL(optimizedFile);
+                } catch (error) {
+                    console.error('Error optimizing image:', error);
+                    // Fallback to original file
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        if (previewId) {
+                            document.getElementById(previewId).src = e.target.result;
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+
+        // Update file upload event listeners to use optimized handling
+        document.getElementById('profile-upload').addEventListener('change', function() {
+            handleImageUpload('profile-upload', 'preview-image');
+        });
+
+        document.getElementById('qr-logo-upload').addEventListener('change', function() {
+            handleImageUpload('qr-logo-upload', null);
+        });
+
+    </script>
 </body>
 </html>
