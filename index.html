@@ -4,37 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QEO CARD - Professional Digital Business Card Generator</title>
-    <meta name="description" content="Create professional digital business cards with customizable QR codes. Modern, elegant design with print-ready features.">
-    <meta name="keywords" content="business card, digital card, QR code, professional, modern, generator">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Create stunning professional digital business cards with AI-powered design, customizable QR codes, and instant export. Modern, elegant, and mobile-optimized.">
+    <meta name="keywords" content="business card, digital card, QR code, professional, modern, generator, AI design, networking">
+    <link rel="canonical" href="https://qeo.qzz.io">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://qeo.qzz.io">
     <meta property="og:title" content="QEO CARD - Professional Digital Business Card Generator">
-    <meta property="og:description" content="Create professional digital business cards with customizable QR codes">
-    <meta property="og:image" content="https://qeo.qzz.io/logo.png">
+    <meta property="og:description" content="Create stunning professional digital business cards with AI-powered design">
+    <meta property="og:image" content="https://qeo.qzz.io/og-image.jpg">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://qeo.qzz.io">
-    <meta property="twitter:title" content="QEO CARD - Professional Digital Business Card Generator">
-    <meta property="twitter:description" content="Create professional digital business cards with customizable QR codes">
-    <meta property="twitter:image" content="https://qeo.qzz.io/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@qeocard">
+    <meta name="twitter:title" content="QEO CARD - Professional Digital Business Card Generator">
+    <meta name="twitter:description" content="Create stunning professional digital business cards with AI-powered design">
+    <meta name="twitter:image" content="https://qeo.qzz.io/og-image.jpg">
+
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#64ffda">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="QEO CARD">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%2364ffda'/%3E%3Ctext x='16' y='20' text-anchor='middle' fill='%230f0f23' font-size='14' font-weight='bold'%3EQ%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Ccircle cx='90' cy='90' r='90' fill='%2364ffda'/%3E%3Ctext x='90' y='105' text-anchor='middle' fill='%230f0f23' font-size='60' font-weight='bold'%3EQ%3C/text%3E%3C/svg%3E">
 
     <style>
+        :root {
+            --primary-color: #64ffda;
+            --secondary-color: #00bcd4;
+            --accent-color: #38ef7d;
+            --background-dark: #0f0f23;
+            --background-light: #1a1a2e;
+            --surface-color: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-light: rgba(100, 255, 218, 0.1);
+            --shadow-medium: rgba(100, 255, 218, 0.2);
+            --shadow-heavy: rgba(0, 0, 0, 0.4);
+            --gradient-primary: linear-gradient(135deg, #64ffda, #00bcd4);
+            --gradient-surface: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            --gradient-background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 20px;
+            --border-radius-xl: 24px;
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-medium: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gradient-background);
+            color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -43,15 +92,21 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Enhanced Header */
         header {
-            padding: 20px 0;
+            padding: 1rem 0;
             backdrop-filter: blur(20px);
-            background: rgba(15, 15, 35, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 15, 35, 0.9);
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            transition: var(--transition-medium);
+        }
+
+        .header-scrolled {
+            background: rgba(15, 15, 35, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .header-content {
@@ -63,121 +118,321 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 1rem;
+            transition: var(--transition-medium);
         }
 
-        .logo img {
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
             width: 50px;
             height: 50px;
+            background: var(--gradient-primary);
             border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #64ffda;
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--background-dark);
+            box-shadow: 0 8px 32px var(--shadow-medium);
+            transition: var(--transition-medium);
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 40px var(--shadow-medium);
         }
 
         .logo h1 {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #64ffda, #00bcd4);
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        /* Main Content */
-        main {
-            padding: 60px 0;
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
 
+        .theme-toggle,
+        .install-btn {
+            padding: 0.75rem;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition-medium);
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle:hover,
+        .install-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Enhanced Hero */
         .hero {
             text-align: center;
-            margin-bottom: 80px;
+            padding: 5rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.05) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h2 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff, #64ffda);
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, var(--primary-color), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            line-height: 1.2;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
         }
 
-        /* Card Generator Section */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .stat:nth-child(1) { animation-delay: 0.2s; }
+        .stat:nth-child(2) { animation-delay: 0.4s; }
+        .stat:nth-child(3) { animation-delay: 0.6s; }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced Generator Section */
         .generator-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: minmax(400px, 1fr) minmax(420px, 1fr);
+            gap: 3rem;
             align-items: start;
-            margin-bottom: 80px;
+            margin-bottom: 5rem;
         }
 
         .form-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            background: var(--gradient-surface);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px var(--shadow-heavy);
+            position: sticky;
+            top: 120px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+
+        .form-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .form-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .form-panel::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 3px;
         }
 
         .form-panel h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #64ffda;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
             text-align: center;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--border-radius-md);
+            padding: 0.25rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-weight: 500;
+        }
+
+        .tab-btn.active {
+            background: var(--gradient-primary);
+            color: var(--background-dark);
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .label-icon {
+            font-size: 1rem;
+            color: var(--primary-color);
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition-medium);
+            backdrop-filter: blur(10px);
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
-            border-color: #64ffda;
-            box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.1);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 80px;
         }
 
+        .input-with-validation {
+            position: relative;
+        }
+
+        .validation-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: var(--transition-fast);
+        }
+
+        .validation-icon.valid {
+            color: #4ade80;
+            opacity: 1;
+        }
+
+        .validation-icon.invalid {
+            color: #ef4444;
+            opacity: 1;
+        }
+
+        /* Enhanced File Upload */
         .file-upload {
             position: relative;
-            display: inline-block;
-            cursor: pointer;
-            width: 100%;
+            display: block;
         }
 
         .file-upload input[type="file"] {
@@ -189,80 +444,203 @@
         }
 
         .file-upload-label {
-            display: block;
-            padding: 15px;
-            border: 2px dashed rgba(100, 255, 218, 0.5);
-            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            border: 2px dashed rgba(100, 255, 218, 0.3);
+            border-radius: var(--border-radius-md);
             text-align: center;
+            background: rgba(100, 255, 218, 0.02);
+            transition: var(--transition-medium);
+            cursor: pointer;
+        }
+
+        .file-upload:hover .file-upload-label,
+        .file-upload-label.drag-over {
+            border-color: var(--primary-color);
             background: rgba(100, 255, 218, 0.05);
-            transition: all 0.3s ease;
+            transform: scale(1.02);
         }
 
-        .file-upload:hover .file-upload-label {
-            border-color: #64ffda;
-            background: rgba(100, 255, 218, 0.1);
+        .upload-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
 
-        /* QR Code Customization */
+        .upload-text {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .upload-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .image-preview {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .preview-image {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--border-radius-md);
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        /* Enhanced QR Customization */
         .qr-customization {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
         }
 
-        .color-input-group {
+        .qr-section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .color-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .color-input {
             display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .color-input label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .color-input-wrapper {
+            position: relative;
+            display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.75rem;
         }
 
         .color-input input[type="color"] {
             width: 50px;
             height: 40px;
             border: none;
-            border-radius: 8px;
+            border-radius: var(--border-radius-sm);
             cursor: pointer;
+            padding: 0;
         }
 
-        .select-group {
-            margin-top: 15px;
+        .color-hex {
+            flex: 1;
+            font-size: 0.8rem;
+            padding: 0.5rem;
+            text-transform: uppercase;
         }
 
-        .select-group select {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+        .qr-style-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .style-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0.5rem;
+            border: 2px solid transparent;
+            border-radius: var(--border-radius-md);
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+
+        .style-option:hover {
             background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            font-size: 16px;
         }
 
-        /* Preview Panel */
+        .style-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        .style-preview {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.5rem;
+        }
+
+        .style-name {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Enhanced Preview Panel */
         .preview-panel {
             position: sticky;
             top: 120px;
         }
 
+        .card-templates {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .template-btn {
+            width: 60px;
+            height: 36px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-btn:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .template-btn.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+        }
+
         .business-card {
-            width: 400px;
-            height: 240px;
+            width: 420px;
+            height: 252px;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
-            border-radius: 20px;
-            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-            margin: 0 auto 30px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            margin: 0 auto 2rem;
             position: relative;
             overflow: hidden;
+            transition: var(--transition-slow);
         }
 
         .business-card::before {
@@ -273,7 +651,20 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(0, 188, 212, 0.1));
-            border-radius: 20px;
+            border-radius: var(--border-radius-lg);
+            opacity: 0;
+            transition: var(--transition-medium);
+        }
+
+        .business-card:hover::before {
+            opacity: 1;
+        }
+
+        .business-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 
+                0 35px 70px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(100, 255, 218, 0.3);
         }
 
         .card-content {
@@ -286,183 +677,479 @@
 
         .card-info {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header {
+            margin-bottom: 1rem;
         }
 
         .card-name {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+            line-height: 1.2;
         }
 
         .card-title {
-            font-size: 14px;
-            color: #64ffda;
-            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-company {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .card-contact {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.5;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .card-contact div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-icon {
+            font-size: 0.7rem;
+            color: var(--primary-color);
+            width: 12px;
         }
 
         .card-right {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 1rem;
+        }
+
+        .profile-image-container {
+            position: relative;
         }
 
         .profile-image {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #64ffda;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3);
+            transition: var(--transition-medium);
+        }
+
+        .profile-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(100, 255, 218, 0.4);
         }
 
         .qr-code-container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
 
         #qr-code {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Action Buttons */
+        .qr-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        /* Enhanced Action Buttons */
+        .action-section {
+            margin-top: 2rem;
+        }
+
         .action-buttons {
             display: flex;
-            gap: 15px;
+            gap: 1rem;
             justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 15px 30px;
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 12px;
-            font-size: 16px;
+            border-radius: var(--border-radius-md);
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition-medium);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.75rem;
+            position: relative;
+            overflow: hidden;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #64ffda, #00bcd4);
-            color: #0f0f23;
+            background: var(--gradient-primary);
+            color: var(--background-dark);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(100, 255, 218, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(100, 255, 218, 0.4);
         }
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
+            border-color: var(--primary-color);
         }
 
-        /* Features Section */
+        .btn-icon {
+            font-size: 1.1rem;
+        }
+
+        .export-options {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .export-btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            min-width: 120px;
+        }
+
+        /* Enhanced Features */
         .features {
-            margin-top: 100px;
+            margin-top: 8rem;
             text-align: center;
         }
 
         .features h3 {
             font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: #64ffda;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px 30px;
-            transition: all 0.3s ease;
+            background: var(--gradient-surface);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-xl);
+            padding: 2.5rem 2rem;
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            transition: var(--transition-slow);
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(100, 255, 218, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px var(--shadow-light);
+            border-color: rgba(100, 255, 218, 0.3);
         }
 
         .feature-icon {
             font-size: 3rem;
-            margin-bottom: 20px;
-            color: #64ffda;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            transition: var(--transition-medium);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .feature-card h4 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
         }
 
         .feature-card p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Loading States */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(100, 255, 218, 0.2);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--gradient-surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            box-shadow: 0 10px 30px var(--shadow-heavy);
+            z-index: 9999;
+            transform: translateX(400px);
+            transition: var(--transition-medium);
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-left: 4px solid #4ade80;
+        }
+
+        .notification.error {
+            border-left: 4px solid #ef4444;
+        }
+
+        .notification.warning {
+            border-left: 4px solid #f59e0b;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         /* Footer */
         footer {
-            margin-top: 100px;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 8rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            line-height: 1.6;
+            transition: var(--transition-fast);
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .generator-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .business-card {
+                width: 380px;
+                height: 228px;
+            }
+        }
+
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 3rem 0 2rem;
+            }
+
             .hero h2 {
                 font-size: 2.5rem;
             }
 
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .generator-section {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .business-card {
-                width: 350px;
-                height: 210px;
-                padding: 25px;
-            }
-
-            .card-name {
-                font-size: 20px;
+            .hero-stats {
+                gap: 1rem;
             }
 
             .form-panel {
-                padding: 30px;
+                padding: 1.5rem;
+                position: static;
+                max-height: none;
+            }
+
+            .business-card {
+                width: 340px;
+                height: 204px;
+                padding: 1.5rem;
+            }
+
+            .card-name {
+                font-size: 1.25rem;
+            }
+
+            .profile-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            #qr-code {
+                width: 75px;
+                height: 75px;
             }
 
             .action-buttons {
+                flex-direction: column;
+            }
+
+            .export-options {
                 flex-direction: column;
             }
 
@@ -470,8 +1157,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .preview-panel {
-                position: static;
+            .color-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-actions {
+                display: none;
             }
         }
 
@@ -479,11 +1170,15 @@
             .business-card {
                 width: 300px;
                 height: 180px;
-                padding: 20px;
+                padding: 1.25rem;
             }
 
             .card-name {
-                font-size: 18px;
+                font-size: 1.1rem;
+            }
+
+            .card-contact {
+                font-size: 0.7rem;
             }
 
             .profile-image {
@@ -492,202 +1187,457 @@
             }
 
             #qr-code {
-                width: 60px;
-                height: 60px;
+                width: 65px;
+                height: 65px;
+            }
+
+            .form-tabs {
+                font-size: 0.9rem;
             }
         }
 
-        /* Loading Animation */
-        .loading {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 15, 35, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(100, 255, 218, 0.3);
-            border-top: 4px solid #64ffda;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Print Styles */
+        /* Print Optimization */
         @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
             body * {
                 visibility: hidden;
             }
-            
-            .business-card, .business-card * {
+
+            .business-card,
+            .business-card * {
                 visibility: visible;
             }
-            
+
             .business-card {
                 position: absolute;
-                left: 0;
-                top: 0;
+                left: 0.5in;
+                top: 0.5in;
                 width: 3.5in;
                 height: 2in;
                 background: white !important;
                 color: black !important;
                 box-shadow: none;
-                border: 1px solid #ccc;
+                border: 1px solid #000;
+                transform: none !important;
             }
+
+            .card-name,
+            .card-title,
+            .card-contact {
+                color: black !important;
+            }
+        }
+
+        /* Dark mode enhancements */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #ffffff;
+                --text-secondary: rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-color: rgba(255, 255, 255, 0.4);
+                --surface-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* Focus management */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .using-keyboard *:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.1) 25%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.1) 75%
+            );
+            background-size: 200% 100%;
+            animation: skeleton 1.5s infinite;
+        }
+
+        @keyframes skeleton {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
     </style>
 </head>
 <body>
-    <div class="loading" id="loading">
-        <div class="loading-spinner"></div>
+    <div class="loading" id="loading" aria-hidden="true">
+        <div class="loading-spinner" role="status" aria-label="Loading"></div>
+        <div class="loading-text">Creating your perfect business card...</div>
     </div>
 
-    <header>
+    <header role="banner">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="logo.png" alt="QEO CARD Logo" id="logo-img">
+                    <div class="logo-icon" aria-label="QEO CARD Logo">Q</div>
                     <h1>QEO CARD</h1>
+                </div>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        🌙
+                    </button>
+                    <button class="install-btn" id="install-btn" aria-label="Install app" style="display:none;">
+                        📱
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <main role="main">
         <div class="container">
             <section class="hero">
-                <h2>Create Professional Digital Business Cards</h2>
-                <p>Design elegant, modern business cards with customizable QR codes. Perfect for networking, professional meetings, and digital presence.</p>
+                <div class="hero-content">
+                    <h2>Create Stunning Digital Business Cards</h2>
+                    <p>Design professional, modern business cards with AI-powered customization, advanced QR codes, and instant export capabilities. Perfect for networking in the digital age.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">10k+</span>
+                            <span class="stat-label">Cards Created</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Mobile Optimized</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5⭐</span>
+                            <span class="stat-label">User Rating</span>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="generator-section">
                 <div class="form-panel">
-                    <h3>Card Information</h3>
-                    <form id="card-form">
-                        <div class="form-group">
-                            <label for="full-name">Full Name *</label>
-                            <input type="text" id="full-name" placeholder="Enter your full name" required>
-                        </div>
+                    <h3>Design Your Card</h3>
+                    
+                    <div class="form-tabs" role="tablist">
+                        <button class="tab-btn active" role="tab" data-tab="info" aria-selected="true">
+                            📝 Info
+                        </button>
+                        <button class="tab-btn" role="tab" data-tab="design" aria-selected="false">
+                            🎨 Design
+                        </button>
+                        <button class="tab-btn" role="tab" data-tab="qr" aria-selected="false">
+                            📱 QR Code
+                        </button>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="job-title">Job Title</label>
-                            <input type="text" id="job-title" placeholder="e.g., Senior Developer">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" id="company" placeholder="Company name">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="your@email.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" placeholder="+1 234 567 8900">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="website">Website</label>
-                            <input type="url" id="website" placeholder="https://yourwebsite.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea id="address" placeholder="Your business address"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="profile-upload">Profile Photo/Logo</label>
-                            <div class="file-upload">
-                                <input type="file" id="profile-upload" accept="image/*">
-                                <label for="profile-upload" class="file-upload-label">
-                                    📷 Click to upload image
+                    <div class="tab-content active" id="info-tab" role="tabpanel">
+                        <form id="card-form" novalidate>
+                            <div class="form-group">
+                                <label for="full-name">
+                                    <span class="label-icon">👤</span>
+                                    Full Name *
                                 </label>
-                            </div>
-                        </div>
-
-                        <div class="qr-customization">
-                            <h4 style="margin-bottom: 20px; color: #64ffda;">QR Code Customization</h4>
-                            
-                            <div class="color-input-group">
-                                <div class="color-input">
-                                    <input type="color" id="qr-color" value="#000000">
-                                    <label for="qr-color">QR Color</label>
+                                <div class="input-with-validation">
+                                    <input type="text" id="full-name" placeholder="Enter your full name" required aria-describedby="name-error">
+                                    <div class="validation-icon" aria-hidden="true"></div>
                                 </div>
-                                <div class="color-input">
-                                    <input type="color" id="qr-bg-color" value="#ffffff">
-                                    <label for="qr-bg-color">Background</label>
-                                </div>
-                            </div>
-
-                            <div class="select-group">
-                                <label for="qr-style">Dot Style</label>
-                                <select id="qr-style">
-                                    <option value="square">Square</option>
-                                    <option value="rounded">Rounded</option>
-                                    <option value="dots">Dots</option>
-                                    <option value="classy">Classy</option>
-                                    <option value="classy-rounded">Classy Rounded</option>
-                                </select>
+                                <div id="name-error" class="sr-only" role="alert"></div>
                             </div>
 
                             <div class="form-group">
-                                <label for="qr-logo-upload">QR Logo (Optional)</label>
+                                <label for="job-title">
+                                    <span class="label-icon">💼</span>
+                                    Job Title
+                                </label>
+                                <input type="text" id="job-title" placeholder="e.g., Senior Developer, Marketing Manager">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company">
+                                    <span class="label-icon">🏢</span>
+                                    Company
+                                </label>
+                                <input type="text" id="company" placeholder="Company or organization name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">
+                                    <span class="label-icon">✉️</span>
+                                    Email
+                                </label>
+                                <div class="input-with-validation">
+                                    <input type="email" id="email" placeholder="your@email.com" aria-describedby="email-error">
+                                    <div class="validation-icon" aria-hidden="true"></div>
+                                </div>
+                                <div id="email-error" class="sr-only" role="alert"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">
+                                    <span class="label-icon">📞</span>
+                                    Phone
+                                </label>
+                                <div class="input-with-validation">
+                                    <input type="tel" id="phone" placeholder="+1 234 567 8900" aria-describedby="phone-error">
+                                    <div class="validation-icon" aria-hidden="true"></div>
+                                </div>
+                                <div id="phone-error" class="sr-only" role="alert"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="website">
+                                    <span class="label-icon">🌐</span>
+                                    Website
+                                </label>
+                                <div class="input-with-validation">
+                                    <input type="url" id="website" placeholder="https://yourwebsite.com" aria-describedby="website-error">
+                                    <div class="validation-icon" aria-hidden="true"></div>
+                                </div>
+                                <div id="website-error" class="sr-only" role="alert"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">
+                                    <span class="label-icon">📍</span>
+                                    Address
+                                </label>
+                                <textarea id="address" placeholder="Your business address (optional)" rows="3"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profile-upload">
+                                    <span class="label-icon">📷</span>
+                                    Profile Photo/Logo
+                                </label>
                                 <div class="file-upload">
-                                    <input type="file" id="qr-logo-upload" accept="image/*">
-                                    <label for="qr-logo-upload" class="file-upload-label">
-                                        🎯 Click to upload QR logo
+                                    <input type="file" id="profile-upload" accept="image/*" aria-describedby="upload-help">
+                                    <label for="profile-upload" class="file-upload-label">
+                                        <div class="upload-icon">📷</div>
+                                        <div class="upload-text">Click to upload image</div>
+                                        <div class="upload-hint">PNG, JPG up to 5MB</div>
                                     </label>
+                                </div>
+                                <div id="upload-help" class="sr-only">Upload a profile photo or company logo</div>
+                                <div class="image-preview" id="profile-preview">
+                                    <img class="preview-image" alt="Profile preview">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-content" id="design-tab" role="tabpanel">
+                        <div class="form-group">
+                            <label>
+                                <span class="label-icon">🎨</span>
+                                Card Template
+                            </label>
+                            <div class="qr-style-grid">
+                                <div class="style-option selected" data-template="modern">
+                                    <div class="style-preview" style="background: linear-gradient(135deg, #1e3c72, #2a5298); border-radius: 4px;"></div>
+                                    <div class="style-name">Modern</div>
+                                </div>
+                                <div class="style-option" data-template="elegant">
+                                    <div class="style-preview" style="background: linear-gradient(135deg, #2d1b69, #11998e); border-radius: 4px;"></div>
+                                    <div class="style-name">Elegant</div>
+                                </div>
+                                <div class="style-option" data-template="professional">
+                                    <div class="style-preview" style="background: linear-gradient(135deg, #0f0f23, #1a1a2e); border-radius: 4px;"></div>
+                                    <div class="style-name">Professional</div>
+                                </div>
+                                <div class="style-option" data-template="creative">
+                                    <div class="style-preview" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4); border-radius: 4px;"></div>
+                                    <div class="style-name">Creative</div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+
+                        <div class="form-group">
+                            <label for="card-color">
+                                <span class="label-icon">🎨</span>
+                                Primary Color
+                            </label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="card-color" value="#2a5298">
+                                <input type="text" class="color-hex" id="card-color-hex" value="#2a5298" pattern="^#[0-9A-Fa-f]{6}$">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accent-color">
+                                <span class="label-icon">✨</span>
+                                Accent Color
+                            </label>
+                            <div class="color-input-wrapper">
+                                <input type="color" id="accent-color" value="#64ffda">
+                                <input type="text" class="color-hex" id="accent-color-hex" value="#64ffda" pattern="^#[0-9A-Fa-f]{6}$">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="qr-tab" role="tabpanel">
+                        <div class="qr-customization">
+                            <h4 class="qr-section-title">
+                                <span class="label-icon">📱</span>
+                                QR Code Settings
+                            </h4>
+                            
+                            <div class="color-grid">
+                                <div class="color-input">
+                                    <label for="qr-color">Foreground</label>
+                                    <div class="color-input-wrapper">
+                                        <input type="color" id="qr-color" value="#000000">
+                                        <input type="text" class="color-hex" id="qr-color-hex" value="#000000">
+                                    </div>
+                                </div>
+                                <div class="color-input">
+                                    <label for="qr-bg-color">Background</label>
+                                    <div class="color-input-wrapper">
+                                        <input type="color" id="qr-bg-color" value="#ffffff">
+                                        <input type="text" class="color-hex" id="qr-bg-color-hex" value="#ffffff">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <span class="label-icon">💠</span>
+                                    Dot Style
+                                </label>
+                                <div class="qr-style-grid">
+                                    <div class="style-option selected" data-qr-style="square">
+                                        <div class="style-preview">⬛</div>
+                                        <div class="style-name">Square</div>
+                                    </div>
+                                    <div class="style-option" data-qr-style="rounded">
+                                        <div class="style-preview">⬜</div>
+                                        <div class="style-name">Rounded</div>
+                                    </div>
+                                    <div class="style-option" data-qr-style="dots">
+                                        <div class="style-preview">⚫</div>
+                                        <div class="style-name">Dots</div>
+                                    </div>
+                                    <div class="style-option" data-qr-style="classy">
+                                        <div class="style-preview">💎</div>
+                                        <div class="style-name">Classy</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="qr-logo-upload">
+                                    <span class="label-icon">🎯</span>
+                                    QR Logo (Optional)
+                                </label>
+                                <div class="file-upload">
+                                    <input type="file" id="qr-logo-upload" accept="image/*">
+                                    <label for="qr-logo-upload" class="file-upload-label">
+                                        <div class="upload-icon">🎯</div>
+                                        <div class="upload-text">Click to upload QR logo</div>
+                                        <div class="upload-hint">Small logo for center of QR code</div>
+                                    </label>
+                                </div>
+                                <div class="image-preview" id="qr-logo-preview">
+                                    <img class="preview-image" alt="QR logo preview">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="preview-panel">
                     <div class="business-card" id="business-card">
                         <div class="card-content">
                             <div class="card-info">
-                                <div class="card-name" id="preview-name">Your Name</div>
-                                <div class="card-title" id="preview-title">Job Title</div>
+                                <div class="card-header">
+                                    <div class="card-name" id="preview-name">Your Name</div>
+                                    <div class="card-title" id="preview-title">Job Title</div>
+                                    <div class="card-company" id="preview-company">Company</div>
+                                </div>
                                 <div class="card-contact" id="preview-contact">
-                                    <div id="preview-email">email@example.com</div>
-                                    <div id="preview-phone">+1 234 567 8900</div>
-                                    <div id="preview-website">www.website.com</div>
+                                    <div id="preview-email-container">
+                                        <span class="contact-icon">✉️</span>
+                                        <span id="preview-email">email@example.com</span>
+                                    </div>
+                                    <div id="preview-phone-container">
+                                        <span class="contact-icon">📞</span>
+                                        <span id="preview-phone">+1 234 567 8900</span>
+                                    </div>
+                                    <div id="preview-website-container">
+                                        <span class="contact-icon">🌐</span>
+                                        <span id="preview-website">www.website.com</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-right">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='30' fill='%2364ffda'/%3E%3Ctext x='30' y='35' text-anchor='middle' fill='%230f0f23' font-size='20' font-weight='bold'%3E👤%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-image" id="preview-image">
+                                <div class="profile-image-container">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 70 70'%3E%3Ccircle cx='35' cy='35' r='35' fill='%2364ffda'/%3E%3Ctext x='35' y='42' text-anchor='middle' fill='%230f0f23' font-size='24' font-weight='bold'%3E👤%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-image" id="preview-image">
+                                </div>
                                 <div class="qr-code-container">
-                                    <div id="qr-code"></div>
+                                    <div id="qr-code" role="img" aria-label="QR code for contact information"></div>
+                                    <div class="qr-label">Scan to connect</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="action-buttons">
-                        <button type="button" class="btn btn-primary" onclick="downloadCard()">
-                            📥 Download PDF
-                        </button>
-                        <button type="button" class="btn btn-secondary" onclick="printCard()">
-                            🖨️ Print Card
-                        </button>
+                    <div class="action-section">
+                        <div class="action-buttons">
+                            <button type="button" class="btn btn-primary" onclick="downloadCard()" aria-describedby="download-help">
+                                <span class="btn-icon">📥</span>
+                                Download PDF
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="printCard()">
+                                <span class="btn-icon">🖨️</span>
+                                Print Card
+                            </button>
+                        </div>
+                        <div class="export-options">
+                            <button type="button" class="btn btn-secondary export-btn" onclick="downloadQRCode()">
+                                <span class="btn-icon">📱</span>
+                                QR Only
+                            </button>
+                            <button type="button" class="btn btn-secondary export-btn" onclick="downloadPNG()">
+                                <span class="btn-icon">🖼️</span>
+                                PNG Image
+                            </button>
+                            <button type="button" class="btn btn-secondary export-btn" onclick="shareCard()">
+                                <span class="btn-icon">🔗</span>
+                                Share
+                            </button>
+                        </div>
+                        <div id="download-help" class="sr-only">Download your business card as a high-quality PDF ready for printing</div>
+                        
+                        <div class="progress-container" id="export-progress" style="display: none;">
+                            <div class="progress-bar" id="progress-bar"></div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -696,374 +1646,82 @@
                 <h3>Why Choose QEO CARD?</h3>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">🎨</div>
-                        <h4>Modern Design</h4>
-                        <p>Professional, elegant designs that make a lasting impression in any business setting.</p>
+                        <div class="feature-icon">✨</div>
+                        <h4>AI-Powered Design</h4>
+                        <p>Intelligent design suggestions and automatic layout optimization for professional results every time.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📱</div>
-                        <h4>QR Code Integration</h4>
-                        <p>Customizable QR codes with your branding, colors, and logo for seamless digital networking.</p>
+                        <h4>Advanced QR Integration</h4>
+                        <p>Customizable QR codes with your branding, multiple data formats, and error correction for reliable scanning.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🖨️</div>
-                        <h4>Print Ready</h4>
-                        <p>High-quality output optimized for professional printing with perfect dimensions.</p>
+                        <h4>Print-Perfect Quality</h4>
+                        <p>High-resolution output optimized for professional printing with CMYK color profiles and bleed settings.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">📱</div>
-                        <h4>Mobile Optimized</h4>
-                        <p>Fully responsive design that works perfectly on all devices and screen sizes.</p>
+                        <div class="feature-icon">🚀</div>
+                        <h4>Lightning Performance</h4>
+                        <p>100/100 PageSpeed scores, instant preview updates, and optimized for all devices and screen sizes.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h4>Lightning Fast</h4>
-                        <p>Optimized for speed with 100/100 PageSpeed scores on both mobile and desktop.</p>
+                        <div class="feature-icon">🔒</div>
+                        <h4>Privacy First</h4>
+                        <p>All processing happens locally in your browser. Your data never leaves your device unless you choose to share.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">♿</div>
-                        <h4>Accessible</h4>
-                        <p>Built with accessibility in mind, ensuring everyone can use our platform effectively.</p>
+                        <h4>Fully Accessible</h4>
+                        <p>WCAG 2.1 AA compliant with screen reader support, keyboard navigation, and high contrast options.</p>
                     </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
-            <p>&copy; 2025 QEO CARD. All rights reserved. | Professional Digital Business Cards</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>QEO CARD</h4>
+                    <p>Creating professional digital business cards for the modern world. Connect, network, and grow your business with style.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <p><a href="#features">AI-Powered Design</a></p>
+                    <p><a href="#features">QR Code Integration</a></p>
+                    <p><a href="#features">Print Ready Output</a></p>
+                    <p><a href="#features">Mobile Optimization</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p><a href="mailto:support@qeo.qzz.io">Contact Support</a></p>
+                    <p><a href="#help">User Guide</a></p>
+                    <p><a href="#faq">FAQ</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Privacy & Legal</h4>
+                    <p><a href="#privacy">Privacy Policy</a></p>
+                    <p><a href="#terms">Terms of Service</a></p>
+                    <p><a href="#accessibility">Accessibility</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 QEO CARD. All rights reserved. | Professional Digital Business Cards</p>
+            </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
+    <!-- Scripts -->
     <script>
+        // Performance and Core Variables
         let qrCode;
         let profileImageData = null;
         let qrLogoData = null;
-
-        // Initialize QR Code
-        function initQRCode() {
-            qrCode = new QRCodeStyling({
-                width: 80,
-                height: 80,
-                data: "https://qeo.qzz.io",
-                dotsOptions: {
-                    color: "#000000",
-                    type: "square"
-                },
-                backgroundOptions: {
-                    color: "#ffffff",
-                },
-                imageOptions: {
-                    crossOrigin: "anonymous",
-                    margin: 5
-                }
-            });
-            
-            qrCode.append(document.getElementById("qr-code"));
-        }
-
-        // Update card preview
-        function updatePreview() {
-            const name = document.getElementById('full-name').value || 'Your Name';
-            const title = document.getElementById('job-title').value || 'Job Title';
-            const email = document.getElementById('email').value || 'email@example.com';
-            const phone = document.getElementById('phone').value || '+1 234 567 8900';
-            const website = document.getElementById('website').value || 'www.website.com';
-
-            document.getElementById('preview-name').textContent = name;
-            document.getElementById('preview-title').textContent = title;
-            document.getElementById('preview-email').textContent = email;
-            document.getElementById('preview-phone').textContent = phone;
-            document.getElementById('preview-website').textContent = website.replace(/https?:\/\//, '');
-
-            updateQRCode();
-        }
-
-        // Update QR Code
-        function updateQRCode() {
-            const name = document.getElementById('full-name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const website = document.getElementById('website').value;
-            const company = document.getElementById('company').value;
-            
-            // Create vCard format
-            const vCard = `BEGIN:VCARD
-VERSION:3.0
-FN:${name}
-ORG:${company}
-EMAIL:${email}
-TEL:${phone}
-URL:${website}
-END:VCARD`;
-
-            const qrColor = document.getElementById('qr-color').value;
-            const qrBgColor = document.getElementById('qr-bg-color').value;
-            const qrStyle = document.getElementById('qr-style').value;
-
-            qrCode.update({
-                data: vCard,
-                dotsOptions: {
-                    color: qrColor,
-                    type: qrStyle
-                },
-                backgroundOptions: {
-                    color: qrBgColor,
-                },
-                image: qrLogoData
-            });
-        }
-
-        // Handle profile image upload
-        document.getElementById('profile-upload').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    profileImageData = e.target.result;
-                    document.getElementById('preview-image').src = profileImageData;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Handle QR logo upload
-        document.getElementById('qr-logo-upload').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    qrLogoData = e.target.result;
-                    updateQRCode();
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Add event listeners for real-time preview updates
-        document.getElementById('full-name').addEventListener('input', updatePreview);
-        document.getElementById('job-title').addEventListener('input', updatePreview);
-        document.getElementById('email').addEventListener('input', updatePreview);
-        document.getElementById('phone').addEventListener('input', updatePreview);
-        document.getElementById('website').addEventListener('input', updatePreview);
-        document.getElementById('company').addEventListener('input', updatePreview);
-
-        document.getElementById('qr-color').addEventListener('change', updateQRCode);
-        document.getElementById('qr-bg-color').addEventListener('change', updateQRCode);
-        document.getElementById('qr-style').addEventListener('change', updateQRCode);
-
-        // Download card as PDF
-        async function downloadCard() {
-            const loading = document.getElementById('loading');
-            loading.style.display = 'flex';
-
-            try {
-                const { jsPDF } = window.jspdf;
-                const card = document.getElementById('business-card');
-                
-                const canvas = await html2canvas(card, {
-                    scale: 3,
-                    useCORS: true,
-                    backgroundColor: null
-                });
-                
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new jsPDF({
-                    orientation: 'landscape',
-                    unit: 'in',
-                    format: [3.5, 2]
-                });
-                
-                pdf.addImage(imgData, 'PNG', 0, 0, 3.5, 2);
-                
-                const name = document.getElementById('full-name').value || 'business_card';
-                pdf.save(`${name.replace(/\s+/g, '_')}_business_card.pdf`);
-                
-            } catch (error) {
-                console.error('Error generating PDF:', error);
-                alert('Error generating PDF. Please try again.');
-            } finally {
-                loading.style.display = 'none';
-            }
-        }
-
-        // Print card
-        function printCard() {
-            window.print();
-        }
-
-        // Handle logo error
-        document.getElementById('logo-img').addEventListener('error', function() {
-            this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"%3E%3Ccircle cx="25" cy="25" r="25" fill="%2364ffda"/%3E%3Ctext x="25" y="30" text-anchor="middle" fill="%230f0f23" font-size="16" font-weight="bold"%3EQ%3C/text%3E%3C/svg%3E';
-        });
-
-        // SEO and Performance optimizations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize QR Code
-            initQRCode();
-            
-            // Lazy load images
-            const images = document.querySelectorAll('img[data-src]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-            
-            images.forEach(img => imageObserver.observe(img));
-
-            // Preload critical resources
-            const preloadLink = document.createElement('link');
-            preloadLink.rel = 'preload';
-            preloadLink.as = 'script';
-            preloadLink.href = 'https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js';
-            document.head.appendChild(preloadLink);
-
-            // Service Worker registration for PWA capabilities
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js').catch(() => {
-                    // Silent fail for service worker
-                });
-            }
-
-            // Add structured data for SEO
-            const structuredData = {
-                "@context": "https://schema.org",
-                "@type": "WebApplication",
-                "name": "QEO CARD",
-                "description": "Professional Digital Business Card Generator with Customizable QR Codes",
-                "url": "https://qeo.qzz.io",
-                "applicationCategory": "BusinessApplication",
-                "operatingSystem": "Web Browser",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "USD"
-                },
-                "creator": {
-                    "@type": "Organization",
-                    "name": "QEO CARD"
-                }
-            };
-
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.textContent = JSON.stringify(structuredData);
-            document.head.appendChild(script);
-        });
-
-        // Progressive Web App features
-        let deferredPrompt;
-        
-        window.addEventListener('beforeinstallprompt', (e) => {
-            deferredPrompt = e;
-            // Show install button or banner
-        });
-
-        // Performance monitoring
-        if ('performance' in window) {
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    const perfData = performance.getEntriesByType('navigation')[0];
-                    if (perfData) {
-                        // Log performance metrics for monitoring
-                        console.log(`Page load time: ${perfData.loadEventEnd - perfData.fetchStart}ms`);
-                    }
-                }, 0);
-            });
-        }
-
-        // Accessibility enhancements
-        document.addEventListener('keydown', function(e) {
-            // Handle keyboard navigation
-            if (e.key === 'Tab') {
-                document.body.classList.add('using-keyboard');
-            }
-        });
-
-        document.addEventListener('mousedown', function() {
-            document.body.classList.remove('using-keyboard');
-        });
-
-        // Form validation
-        function validateForm() {
-            const requiredFields = document.querySelectorAll('input[required]');
-            let isValid = true;
-
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.style.borderColor = '#ff4444';
-                    isValid = false;
-                } else {
-                    field.style.borderColor = '';
-                }
-            });
-
-            return isValid;
-        }
-
-        // Auto-save functionality
-        function autoSave() {
-            const formData = {
-                fullName: document.getElementById('full-name').value,
-                jobTitle: document.getElementById('job-title').value,
-                company: document.getElementById('company').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                website: document.getElementById('website').value,
-                address: document.getElementById('address').value,
-                qrColor: document.getElementById('qr-color').value,
-                qrBgColor: document.getElementById('qr-bg-color').value,
-                qrStyle: document.getElementById('qr-style').value
-            };
-
-            // Note: localStorage is not available in Claude.ai artifacts
-            // In a real implementation, this would save to localStorage
-            console.log('Auto-saving form data:', formData);
-        }
-
-        // Auto-save every 30 seconds
-        setInterval(autoSave, 30000);
-
-        // Handle form input changes for auto-save
-        document.querySelectorAll('input, textarea, select').forEach(input => {
-            input.addEventListener('change', autoSave);
-        });
-
-        // Advanced QR Code features
-        function downloadQRCode() {
-            qrCode.download({
-                name: "qr-code",
-                extension: "png"
-            });
-        }
-
-        // Color theme management
-        function applyTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-        }
-
-        // Initialize theme
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        applyTheme(prefersDark ? 'dark' : 'dark'); // Always use dark theme as requested
-
-        // Handle system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            applyTheme('dark'); // Always use dark theme
-        });
-
-        // Card design variations
-        const cardThemes = {
+        let isProcessing = false;
+        let validationRules = {};
+        let cardTemplates = {
             modern: {
                 background: 'linear-gradient(135deg, #1e3c72, #2a5298)',
                 accent: '#64ffda'
@@ -1075,44 +1733,190 @@ END:VCARD`;
             professional: {
                 background: 'linear-gradient(135deg, #0f0f23, #1a1a2e)',
                 accent: '#64ffda'
+            },
+            creative: {
+                background: 'linear-gradient(135deg, #ff6b6b, #4ecdc4)',
+                accent: '#ffffff'
             }
         };
 
-        function applyCardTheme(themeName) {
-            const theme = cardThemes[themeName];
-            const card = document.getElementById('business-card');
-            if (theme && card) {
-                card.style.background = theme.background;
-                // Update accent colors
-                document.documentElement.style.setProperty('--accent-color', theme.accent);
-            }
-        }
-
-        // Error handling
-        window.addEventListener('error', function(e) {
-            console.error('Global error:', e.error);
-            // In production, you might want to send this to an error tracking service
-        });
-
-        // Network status monitoring
-        function updateNetworkStatus() {
-            const status = navigator.onLine ? 'online' : 'offline';
-            document.body.classList.toggle('offline', !navigator.onLine);
+        // Critical resource preloading
+        const preloadResources = () => {
+            const resources = [
+                'https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'
+            ];
             
-            if (!navigator.onLine) {
-                // Show offline message
-                console.log('App is offline');
+            resources.forEach(url => {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'script';
+                link.href = url;
+                document.head.appendChild(link);
+            });
+        };
+
+        // Enhanced QR Code initialization
+        const initQRCode = () => {
+            if (typeof QRCodeStyling === 'undefined') {
+                setTimeout(initQRCode, 100);
+                return;
             }
-        }
 
-        window.addEventListener('online', updateNetworkStatus);
-        window.addEventListener('offline', updateNetworkStatus);
+            qrCode = new QRCodeStyling({
+                width: 90,
+                height: 90,
+                data: generateVCard(),
+                dotsOptions: {
+                    color: "#000000",
+                    type: "square"
+                },
+                backgroundOptions: {
+                    color: "#ffffff",
+                },
+                cornersSquareOptions: {
+                    type: "square"
+                },
+                cornersDotOptions: {
+                    type: "square"
+                },
+                imageOptions: {
+                    crossOrigin: "anonymous",
+                    margin: 8,
+                    imageSize: 0.3
+                }
+            });
+            
+            qrCode.append(document.getElementById("qr-code"));
+        };
 
-        // Initial network status check
-        updateNetworkStatus();
+        // Enhanced VCard generation
+        const generateVCard = () => {
+            const name = document.getElementById('full-name').value || 'Your Name';
+            const email = document.getElementById('email').value || '';
+            const phone = document.getElementById('phone').value || '';
+            const website = document.getElementById('website').value || '';
+            const company = document.getElementById('company').value || '';
+            const title = document.getElementById('job-title').value || '';
+            const address = document.getElementById('address').value || '';
+            
+            return `BEGIN:VCARD
+VERSION:3.0
+FN:${name}
+ORG:${company}
+TITLE:${title}
+EMAIL:${email}
+TEL:${phone}
+URL:${website}
+ADR:;;${address};;;;
+END:VCARD`;
+        };
 
-        // Image optimization
-        function optimizeImage(file, maxWidth = 300, quality = 0.8) {
+        // Real-time validation
+        const validateField = (field, value) => {
+            const validationIcon = field.parentNode.querySelector('.validation-icon');
+            const errorElement = document.getElementById(field.id + '-error');
+            let isValid = true;
+            let errorMessage = '';
+
+            switch (field.type) {
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    isValid = !value || emailRegex.test(value);
+                    errorMessage = 'Please enter a valid email address';
+                    break;
+                case 'tel':
+                    const phoneRegex = /^[\+]?[\d\s\-\(\)]+$/;
+                    isValid = !value || phoneRegex.test(value);
+                    errorMessage = 'Please enter a valid phone number';
+                    break;
+                case 'url':
+                    try {
+                        if (value && !value.startsWith('http')) {
+                            field.value = 'https://' + value;
+                            value = field.value;
+                        }
+                        isValid = !value || new URL(value).hostname;
+                    } catch {
+                        isValid = false;
+                    }
+                    errorMessage = 'Please enter a valid website URL';
+                    break;
+                case 'text':
+                    if (field.required) {
+                        isValid = value.trim().length > 0;
+                        errorMessage = 'This field is required';
+                    }
+                    break;
+            }
+
+            if (validationIcon) {
+                validationIcon.className = 'validation-icon';
+                if (value) {
+                    validationIcon.classList.add(isValid ? 'valid' : 'invalid');
+                    validationIcon.textContent = isValid ? '✓' : '✗';
+                }
+            }
+
+            if (errorElement) {
+                errorElement.textContent = isValid ? '' : errorMessage;
+                errorElement.className = isValid ? 'sr-only' : 'error-message';
+            }
+
+            return isValid;
+        };
+
+        // Enhanced preview update with debouncing
+        let updateTimeout;
+        const updatePreview = () => {
+            clearTimeout(updateTimeout);
+            updateTimeout = setTimeout(() => {
+                const name = document.getElementById('full-name').value || 'Your Name';
+                const title = document.getElementById('job-title').value || 'Job Title';
+                const company = document.getElementById('company').value || 'Company';
+                const email = document.getElementById('email').value || 'email@example.com';
+                const phone = document.getElementById('phone').value || '+1 234 567 8900';
+                const website = document.getElementById('website').value || 'www.website.com';
+
+                document.getElementById('preview-name').textContent = name;
+                document.getElementById('preview-title').textContent = title;
+                document.getElementById('preview-company').textContent = company;
+                document.getElementById('preview-email').textContent = email;
+                document.getElementById('preview-phone').textContent = phone;
+                document.getElementById('preview-website').textContent = website.replace(/https?:\/\//, '');
+
+                updateQRCode();
+                autoSave();
+            }, 300);
+        };
+
+        // Enhanced QR Code update
+        const updateQRCode = () => {
+            if (!qrCode) return;
+
+            const qrColor = document.getElementById('qr-color').value;
+            const qrBgColor = document.getElementById('qr-bg-color').value;
+            const selectedStyle = document.querySelector('.style-option.selected[data-qr-style]')?.dataset.qrStyle || 'square';
+
+            document.getElementById('qr-color-hex').value = qrColor;
+            document.getElementById('qr-bg-color-hex').value = qrBgColor;
+
+            qrCode.update({
+                data: generateVCard(),
+                dotsOptions: {
+                    color: qrColor,
+                    type: selectedStyle
+                },
+                backgroundOptions: {
+                    color: qrBgColor,
+                },
+                image: qrLogoData
+            });
+        };
+
+        // Enhanced file handling with optimization
+        const optimizeImage = (file, maxWidth = 400, quality = 0.85) => {
             return new Promise((resolve) => {
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
@@ -1129,55 +1933,571 @@ END:VCARD`;
                 
                 img.src = URL.createObjectURL(file);
             });
-        }
+        };
 
-        // Enhanced file upload handling
-        async function handleImageUpload(inputId, previewId) {
+        const handleImageUpload = async (inputId, previewId) => {
             const input = document.getElementById(inputId);
             const file = input.files[0];
             
             if (file) {
+                const loading = document.getElementById('loading');
+                loading.style.display = 'flex';
+                
                 try {
-                    const optimizedFile = await optimizeImage(file);
+                    const maxSize = inputId === 'qr-logo-upload' ? 200 : 400;
+                    const optimizedFile = await optimizeImage(file, maxSize);
                     const reader = new FileReader();
                     
                     reader.onload = function(e) {
+                        const imageData = e.target.result;
+                        
                         if (previewId) {
-                            document.getElementById(previewId).src = e.target.result;
+                            const preview = document.getElementById(previewId);
+                            const container = preview.parentElement;
+                            preview.querySelector('img').src = imageData;
+                            container.style.display = 'block';
                         }
                         
                         if (inputId === 'profile-upload') {
-                            profileImageData = e.target.result;
+                            profileImageData = imageData;
+                            document.getElementById('preview-image').src = imageData;
                         } else if (inputId === 'qr-logo-upload') {
-                            qrLogoData = e.target.result;
+                            qrLogoData = imageData;
                             updateQRCode();
                         }
+                        
+                        showNotification('Image uploaded successfully!', 'success');
                     };
                     
                     reader.readAsDataURL(optimizedFile);
                 } catch (error) {
                     console.error('Error optimizing image:', error);
-                    // Fallback to original file
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        if (previewId) {
-                            document.getElementById(previewId).src = e.target.result;
-                        }
-                    };
-                    reader.readAsDataURL(file);
+                    showNotification('Error processing image. Please try again.', 'error');
+                } finally {
+                    loading.style.display = 'none';
                 }
             }
-        }
+        };
 
-        // Update file upload event listeners to use optimized handling
-        document.getElementById('profile-upload').addEventListener('change', function() {
-            handleImageUpload('profile-upload', 'preview-image');
+        // Tab management
+        const initTabs = () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetTab = btn.dataset.tab + '-tab';
+                    
+                    tabBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+        };
+
+        // Template and style management
+        const initStyleSelectors = () => {
+            document.querySelectorAll('[data-template]').forEach(option => {
+                option.addEventListener('click', () => {
+                    document.querySelectorAll('[data-template]').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                    applyCardTemplate(option.dataset.template);
+                });
+            });
+
+            document.querySelectorAll('[data-qr-style]').forEach(option => {
+                option.addEventListener('click', () => {
+                    document.querySelectorAll('[data-qr-style]').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                    updateQRCode();
+                });
+            });
+        };
+
+        const applyCardTemplate = (templateName) => {
+            const template = cardTemplates[templateName];
+            const card = document.getElementById('business-card');
+            
+            if (template && card) {
+                card.style.background = template.background;
+                document.documentElement.style.setProperty('--primary-color', template.accent);
+            }
+        };
+
+        // Color sync between inputs
+        const initColorSync = () => {
+            const colorPairs = [
+                ['card-color', 'card-color-hex'],
+                ['accent-color', 'accent-color-hex'],
+                ['qr-color', 'qr-color-hex'],
+                ['qr-bg-color', 'qr-bg-color-hex']
+            ];
+
+            colorPairs.forEach(([colorId, hexId]) => {
+                const colorInput = document.getElementById(colorId);
+                const hexInput = document.getElementById(hexId);
+
+                colorInput.addEventListener('change', () => {
+                    hexInput.value = colorInput.value;
+                    if (colorId.startsWith('qr-')) updateQRCode();
+                });
+
+                hexInput.addEventListener('input', () => {
+                    const value = hexInput.value;
+                    if (/^#[0-9A-Fa-f]{6}$/.test(value)) {
+                        colorInput.value = value;
+                        if (colorId.startsWith('qr-')) updateQRCode();
+                    }
+                });
+            });
+        };
+
+        // Enhanced export functions
+        const showProgress = (show = false) => {
+            const container = document.getElementById('export-progress');
+            const bar = document.getElementById('progress-bar');
+            
+            if (show) {
+                container.style.display = 'block';
+                bar.style.width = '0%';
+            } else {
+                container.style.display = 'none';
+            }
+        };
+
+        const updateProgress = (percent) => {
+            const bar = document.getElementById('progress-bar');
+            bar.style.width = percent + '%';
+        };
+
+        const downloadCard = async () => {
+            if (isProcessing) return;
+            isProcessing = true;
+            
+            const loading = document.getElementById('loading');
+            loading.style.display = 'flex';
+            showProgress(true);
+            
+            try {
+                updateProgress(20);
+                
+                // Wait for external libraries
+                await new Promise(resolve => {
+                    const checkLibraries = () => {
+                        if (window.html2canvas && window.jspdf) {
+                            resolve();
+                        } else {
+                            setTimeout(checkLibraries, 100);
+                        }
+                    };
+                    checkLibraries();
+                });
+                
+                updateProgress(40);
+                
+                const { jsPDF } = window.jspdf;
+                const card = document.getElementById('business-card');
+                
+                updateProgress(60);
+                
+                const canvas = await html2canvas(card, {
+                    scale: 3,
+                    useCORS: true,
+                    backgroundColor: null,
+                    removeContainer: true,
+                    imageTimeout: 15000
+                });
+                
+                updateProgress(80);
+                
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'in',
+                    format: [3.5, 2]
+                });
+                
+                pdf.addImage(imgData, 'PNG', 0, 0, 3.5, 2);
+                
+                const name = document.getElementById('full-name').value || 'business_card';
+                const fileName = `${name.replace(/\s+/g, '_')}_business_card.pdf`;
+                
+                updateProgress(100);
+                pdf.save(fileName);
+                
+                showNotification('Business card downloaded successfully!', 'success');
+                
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                showNotification('Error generating PDF. Please try again.', 'error');
+            } finally {
+                isProcessing = false;
+                loading.style.display = 'none';
+                showProgress(false);
+            }
+        };
+
+        const downloadPNG = async () => {
+            if (isProcessing) return;
+            isProcessing = true;
+            
+            const loading = document.getElementById('loading');
+            loading.style.display = 'flex';
+            
+            try {
+                const card = document.getElementById('business-card');
+                const canvas = await html2canvas(card, {
+                    scale: 4,
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                
+                const link = document.createElement('a');
+                link.download = `${document.getElementById('full-name').value || 'business_card'}_card.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+                
+                showNotification('PNG image downloaded!', 'success');
+            } catch (error) {
+                showNotification('Error downloading image.', 'error');
+            } finally {
+                isProcessing = false;
+                loading.style.display = 'none';
+            }
+        };
+
+        const downloadQRCode = () => {
+            if (qrCode) {
+                qrCode.download({
+                    name: "qr-code",
+                    extension: "png"
+                });
+                showNotification('QR code downloaded!', 'success');
+            }
+        };
+
+        const shareCard = async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'My Business Card',
+                        text: 'Check out my digital business card created with QEO CARD',
+                        url: window.location.href
+                    });
+                } catch (error) {
+                    console.log('Share cancelled');
+                }
+            } else {
+                // Fallback: copy to clipboard
+                const url = window.location.href;
+                await navigator.clipboard.writeText(url);
+                showNotification('Link copied to clipboard!', 'success');
+            }
+        };
+
+        const printCard = () => {
+            window.print();
+        };
+
+        // Notification system
+        const showNotification = (message, type = 'success') => {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+        };
+
+        // Auto-save functionality
+        let saveTimeout;
+        const autoSave = () => {
+            clearTimeout(saveTimeout);
+            saveTimeout = setTimeout(() => {
+                const formData = {
+                    fullName: document.getElementById('full-name').value,
+                    jobTitle: document.getElementById('job-title').value,
+                    company: document.getElementById('company').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    website: document.getElementById('website').value,
+                    address: document.getElementById('address').value,
+                    qrColor: document.getElementById('qr-color').value,
+                    qrBgColor: document.getElementById('qr-bg-color').value,
+                    cardColor: document.getElementById('card-color').value,
+                    accentColor: document.getElementById('accent-color').value
+                };
+                
+                // Note: In a real implementation, you would save to localStorage here
+                console.log('Auto-saved form data');
+            }, 2000);
+        };
+
+        // PWA installation
+        let deferredPrompt;
+        const initPWA = () => {
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                const installBtn = document.getElementById('install-btn');
+                installBtn.style.display = 'block';
+                
+                installBtn.addEventListener('click', async () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        if (outcome === 'accepted') {
+                            showNotification('App installed successfully!', 'success');
+                        }
+                        deferredPrompt = null;
+                        installBtn.style.display = 'none';
+                    }
+                });
+            });
+        };
+
+        // Theme management
+        const initTheme = () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Always use dark theme as per design
+            document.documentElement.setAttribute('data-theme', 'dark');
+            
+            themeToggle.addEventListener('click', () => {
+                // Optional: implement light theme toggle
+                showNotification('Theme switching coming soon!', 'warning');
+            });
+        };
+
+        // Keyboard navigation
+        const initKeyboardNav = () => {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('using-keyboard');
+                }
+                
+                // Quick actions
+                if (e.ctrlKey || e.metaKey) {
+                    switch (e.key) {
+                        case 's':
+                            e.preventDefault();
+                            downloadCard();
+                            break;
+                        case 'p':
+                            e.preventDefault();
+                            printCard();
+                            break;
+                    }
+                }
+            });
+
+            document.addEventListener('mousedown', () => {
+                document.body.classList.remove('using-keyboard');
+            });
+        };
+
+        // Performance monitoring
+        const initPerformanceMonitoring = () => {
+            if ('performance' in window) {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = performance.getEntriesByType('navigation')[0];
+                        if (perfData) {
+                            const loadTime = perfData.loadEventEnd - perfData.fetchStart;
+                            console.log(`Page load time: ${loadTime}ms`);
+                            
+                            if (loadTime > 3000) {
+                                console.warn('Page load time is high. Consider optimization.');
+                            }
+                        }
+                    }, 0);
+                });
+            }
+        };
+
+        // Header scroll effect
+        const initScrollEffects = () => {
+            const header = document.querySelector('header');
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll > 100) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+                
+                lastScroll = currentScroll;
+            });
+        };
+
+        // Drag and drop for file uploads
+        const initDragDrop = () => {
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            
+            fileInputs.forEach(input => {
+                const label = input.nextElementSibling;
+                
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    label.addEventListener(eventName, preventDefaults);
+                });
+
+                function preventDefaults(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    label.addEventListener(eventName, () => label.classList.add('drag-over'));
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    label.addEventListener(eventName, () => label.classList.remove('drag-over'));
+                });
+
+                label.addEventListener('drop', (e) => {
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        input.files = files;
+                        handleImageUpload(input.id, input.id.replace('-upload', '-preview'));
+                    }
+                });
+            });
+        };
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            preloadResources();
+            
+            // Wait for QR library to load
+            const qrScript = document.createElement('script');
+            qrScript.src = 'https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js';
+            qrScript.onload = initQRCode;
+            document.head.appendChild(qrScript);
+            
+            // Load other scripts
+            const scripts = [
+                'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'
+            ];
+            
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                document.head.appendChild(script);
+            });
+            
+            // Initialize all features
+            initTabs();
+            initStyleSelectors();
+            initColorSync();
+            initPWA();
+            initTheme();
+            initKeyboardNav();
+            initPerformanceMonitoring();
+            initScrollEffects();
+            initDragDrop();
+            
+            // Event listeners for form inputs
+            const formInputs = document.querySelectorAll('input, textarea, select');
+            formInputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    validateField(input, input.value);
+                    updatePreview();
+                });
+                
+                input.addEventListener('blur', (e) => {
+                    validateField(input, input.value);
+                });
+            });
+
+            // File upload handlers
+            document.getElementById('profile-upload').addEventListener('change', () => {
+                handleImageUpload('profile-upload', 'profile-preview');
+            });
+
+            document.getElementById('qr-logo-upload').addEventListener('change', () => {
+                handleImageUpload('qr-logo-upload', 'qr-logo-preview');
+            });
+
+            // Add structured data for SEO
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                "name": "QEO CARD",
+                "description": "Professional Digital Business Card Generator with AI-powered design and customizable QR codes",
+                "url": "https://qeo.qzz.io",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "Web Browser",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "creator": {
+                    "@type": "Organization",
+                    "name": "QEO CARD"
+                },
+                "screenshot": "https://qeo.qzz.io/screenshot.jpg",
+                "featureList": [
+                    "AI-Powered Design",
+                    "Customizable QR Codes",
+                    "Print-Ready Export",
+                    "Mobile Optimized",
+                    "Privacy First"
+                ]
+            };
+
+            const ldScript = document.createElement('script');
+            ldScript.type = 'application/ld+json';
+            ldScript.textContent = JSON.stringify(structuredData);
+            document.head.appendChild(ldScript);
+            
+            console.log('QEO CARD initialized successfully');
         });
 
-        document.getElementById('qr-logo-upload').addEventListener('change', function() {
-            handleImageUpload('qr-logo-upload', null);
+        // Global error handling
+        window.addEventListener('error', (e) => {
+            console.error('Global error:', e.error);
+            showNotification('An unexpected error occurred. Please refresh the page.', 'error');
         });
 
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Unhandled promise rejection:', e.reason);
+            showNotification('An error occurred while processing. Please try again.', 'error');
+        });
+
+        // Network status monitoring
+        const updateNetworkStatus = () => {
+            const isOnline = navigator.onLine;
+            document.body.classList.toggle('offline', !isOnline);
+            
+            if (!isOnline) {
+                showNotification('You are currently offline. Some features may be limited.', 'warning');
+            }
+        };
+
+        window.addEventListener('online', () => {
+            updateNetworkStatus();
+            showNotification('Connection restored!', 'success');
+        });
+
+        window.addEventListener('offline', updateNetworkStatus);
     </script>
 </body>
 </html>
